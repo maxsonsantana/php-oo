@@ -8,6 +8,9 @@
         <?php
             require_once 'Caneta.php';
             require_once 'ContaBanco.php';
+            require_once 'ControleRemoto.php';
+            require_once 'Uec.php';
+                        
             $c1 = new Caneta("BIC", "AZUL", 0.7);
             $c2 = new Caneta("COMPACTOR", "PRETA", 0.5);
             $c1->cor = "Azul";
@@ -28,6 +31,7 @@
             echo '<br><br>';
 
             echo '<br>-------------------------------------------CONTA BANCARIA-------------------------------------------<br>';
+
             $p1 = new ContaBanco();//Tião
             $p2 = new ContaBanco();//Bizantina
 
@@ -51,6 +55,41 @@
 
             print_r($p1);
             print_r($p2);
+
+            echo '<br>-------------------------------------------INTERFACE-------------------------------------------<br>';
+            echo'<h1>Controle Remoto</h1><br>';
+            $c = new ControleRemoto();
+            $c->ligar();
+            $c->abrirMenu();
+            $c->menosVolume();
+            $c->menosVolume();
+            $c->menosVolume();
+            $c->abrirMenu();
+
+            echo '<br>-------------------------------------------RELACIONAMENTO DE CLASSES-------------------------------------------<br>';
+            echo'<h1>UEC</h1><br>';
+            
+            
+            $l = array();
+            $l[0] = new Uec('Anderson Silva', 'Brasil', 31, 1.75, 68.5, 11, 7, 3);
+            $l[0]->status();
+            $l[1] = new Uec('Seu Madruga', 'México', 32, 1.75, 40, 4, 15, 1);
+            $l[1]->status();
+            $l[1]->apresentar();
+            $l[1]->ganharLuta();
+            $l[1]->status();
+            $l[2] = new Uec('Popó', 'Brasil', 30, 1.60, 20, 2, 20, 2);
+            $l[2]->status();
+            $l[2]->apresentar();
+            $l[2]->ganharLuta();
+
+            echo '<br>-------------------------------------------Luta-------------------------------------------<br>';
+            echo'<h1>Luta</h1><br>';
+            require_once 'Luta.php';
+            $UEC01 = new Luta();
+            
+            $UEC01->marcarLuta($l[1], $l[2]);
+            $UEC01->lutar();
         ?>
         </pre>
     </body>
